@@ -1,5 +1,4 @@
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Options;
 using Microsoft.Extensions.Logging;
 
 namespace Tellma.Utilities.EmailLogger.Tests
@@ -20,7 +19,7 @@ namespace Tellma.Utilities.EmailLogger.Tests
         public void TestEmailLogger()
         {
             //Arrange
-            var emailLogger = new EmailLogger(Options.Create(_options));
+            var emailLogger = new EmailLogger(_options);
             var exception = new Exception($"Testing exception");
 
             //Act

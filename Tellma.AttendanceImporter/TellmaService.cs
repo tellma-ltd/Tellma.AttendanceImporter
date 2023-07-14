@@ -1,10 +1,4 @@
 ﻿using Microsoft.Extensions.Options;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Metadata;
-using System.Text;
-using System.Threading.Tasks;
 using Tellma.Api.Dto;
 using Tellma.AttendanceImporter.Contract;
 using Tellma.Client;
@@ -172,7 +166,7 @@ namespace Tellma.AttendanceImporter
                 }
                 await tenantClient
                     .Documents(documentDefinitionId)
-                    .Save(documentForSave);
+                    .Save(documentForSave, cancellation: token);
             }
         }
     }

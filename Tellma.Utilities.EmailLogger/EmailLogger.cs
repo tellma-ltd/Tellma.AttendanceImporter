@@ -1,6 +1,5 @@
 ﻿using MailKit.Net.Smtp;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using MimeKit;
 
 namespace Tellma.Utilities.EmailLogger

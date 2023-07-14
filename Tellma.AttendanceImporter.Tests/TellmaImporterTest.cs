@@ -53,8 +53,14 @@ namespace Tellma.AttendanceImporter.Tests
             {
                 new AttendanceRecord(info)
                 {
-                    Time = new DateTime(2023,6,3,8,56,0),
-                    UserId = "19",
+                    Time = new DateTime(2023,6,19,8,56,0),
+                    UserId = "19", // Asmaa
+                    IsIn = null
+                },
+                new AttendanceRecord(info)
+                {
+                    Time = new DateTime(2023,6,19,8,58,0),
+                    UserId = "21", // Sara
                     IsIn = null
                 }
             };

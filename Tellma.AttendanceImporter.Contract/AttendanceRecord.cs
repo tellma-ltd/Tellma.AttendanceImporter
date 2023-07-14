@@ -1,6 +1,4 @@
-﻿using System.Drawing;
-
-namespace Tellma.AttendanceImporter.Contract
+﻿namespace Tellma.AttendanceImporter.Contract
 {
     public class AttendanceRecord
     {

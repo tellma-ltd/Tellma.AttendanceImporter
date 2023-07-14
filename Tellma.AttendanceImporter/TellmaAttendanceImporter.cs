@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using System.Diagnostics;
 using Tellma.AttendanceImporter.Contract;
 
 namespace Tellma.AttendanceImporter
