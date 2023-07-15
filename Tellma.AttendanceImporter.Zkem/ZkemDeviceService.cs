@@ -67,6 +67,7 @@ namespace Tellma.AttendanceImporter.Zkem
                     {
                         var dateTime = new DateTime(year, month, day, hour, minute, second);
                         if (dateTime > deviceInfo.LastSyncTime)
+                        {
                             list.Add(new AttendanceRecord(deviceInfo)
                             {
                                 IsIn = inOutMode == 0 || inOutMode == 3,
@@ -77,8 +78,9 @@ namespace Tellma.AttendanceImporter.Zkem
                                 //IsDeleted = false
                             });
 
-                        if (list.Count % 1000 == 0)
-                            logger.LogWarning($"{DateTime.Now.ToString(LOG_DATE_FORMAT)} - Device ({deviceInfo.Name}): Counting '{list.Count}' attendance records");
+                            if (list.Count % 1000 == 0)
+                                logger.LogWarning($"{DateTime.Now.ToString(LOG_DATE_FORMAT)} - Device ({deviceInfo.Name}): Counting '{list.Count}' attendance records");
+                        }
                     }
 
                     logger.LogInformation($"{DateTime.Now.ToString(LOG_DATE_FORMAT)} - Device ({deviceInfo.Name}): Done SSR_GetGeneralLogData");

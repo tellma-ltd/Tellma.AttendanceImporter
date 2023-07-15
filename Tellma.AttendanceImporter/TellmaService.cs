@@ -9,7 +9,6 @@ namespace Tellma.AttendanceImporter
     internal class TellmaService : ITellmaService
     {
         private readonly TellmaClient _client; // wrapper calling Tellma server => client
-
         public TellmaService(IOptions<TellmaOptions> options)
         {
             // Create the client
@@ -64,6 +63,7 @@ namespace Tellma.AttendanceImporter
                     Id = d.Id,
                     DutyStationId = d.Agent1Id,
                     IpAddress = d.Text1,
+                    Port = d.Int1,
                     // assume new devices have 1970-01-01 last sync
                     LastSyncTime = syncDictionary.GetValueOrDefault(d.Id, new DateTime(1970, 1, 1))
                 });
@@ -151,7 +151,7 @@ namespace Tellma.AttendanceImporter
                         {
                             DefinitionId = lineDefinitionId,
                             Boolean1 = record.IsIn,
-                            Text1 = record.Time.ToString("hh:mm tt"),
+                            Text1 = record.Time.ToString("HH:mm:ss"),
                             Text2 = record.UserId,
                             Entries = new List<EntryForSave>
                             {

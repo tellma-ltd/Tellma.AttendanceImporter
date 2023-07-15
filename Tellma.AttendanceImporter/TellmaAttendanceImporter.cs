@@ -42,7 +42,7 @@ namespace Tellma.AttendanceImporter
         public async Task ImportToTellma(CancellationToken token)
         {
             //Stopwatch sw = Stopwatch.StartNew();
-   
+
             foreach (int tenantId in _tenantIds)
             {
                 IEnumerable<DeviceInfo> deviceInfos;
