@@ -65,11 +65,11 @@ namespace Tellma.AttendanceImporter
                         {
                             IEnumerable<AttendanceRecord> attendanceRecords = await deviceService.LoadFromDevice(deviceInfo, token);
                             await _tellmaService.Import(tenantId, attendanceRecords, token);
-                            _logger.LogInformation($"Imported {attendanceRecords.Count()} records to Tenant {tenantId} from device {deviceInfo}");
+                            _logger.LogInformation($"Imported {attendanceRecords.Count()} records to Tenant {tenantId} from device ({deviceInfo})");
                         }
                         catch (Exception ex)
                         {
-                            _logger.LogError(ex, $"An error occurred while loading from device {deviceInfo} and uploading to tenant {tenantId}");
+                            _logger.LogError(ex, $"An error occurred while loading from device ({deviceInfo}) and uploading to tenant {tenantId}");
                             continue; // in case a new line was added later:)
                         }
                     }

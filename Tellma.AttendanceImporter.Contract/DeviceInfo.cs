@@ -13,5 +13,9 @@
         public string? IpAddress { get; set; }
         public int? Port { get; set; }
         public DateTime? LastSyncTime { get; set; }
+        public override string? ToString()
+        {
+            return Name;
+        }
     }
 }

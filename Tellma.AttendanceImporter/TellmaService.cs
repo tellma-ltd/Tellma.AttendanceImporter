@@ -61,6 +61,7 @@ namespace Tellma.AttendanceImporter
                 .Select(d => new DeviceInfo(deviceType: d.Lookup1.Code)
                 {
                     Id = d.Id,
+                    Name = d.Name,
                     DutyStationId = d.Agent1Id,
                     IpAddress = d.Text1,
                     Port = d.Int1,

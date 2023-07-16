@@ -13,15 +13,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tellma.AttendanceImporter.W
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tellma.AttendanceImporter.Tests", "Tellma.AttendanceImporter.Tests\Tellma.AttendanceImporter.Tests.csproj", "{E09BE13E-44D3-48C6-A906-BA9294027EF5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tellma.AttendanceImporter.Samsung", "Tellma.AttendanceImporter.Samsung\Tellma.AttendanceImporter.Samsung.csproj", "{B0A1611C-0542-4AEC-A568-5E005D85EE28}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tellma.AttendanceImporter.Samsung", "Tellma.AttendanceImporter.Samsung\Tellma.AttendanceImporter.Samsung.csproj", "{B0A1611C-0542-4AEC-A568-5E005D85EE28}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tellma.AttendanceImporter.Zkem.Tests", "Tellma.AttendanceImporter.Zkem.Tests\Tellma.AttendanceImporter.Zkem.Tests.csproj", "{F071A6E2-BC06-4D07-9E98-8C0E3AA155DA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tellma.AttendanceImporter.Zkem.Tests", "Tellma.AttendanceImporter.Zkem.Tests\Tellma.AttendanceImporter.Zkem.Tests.csproj", "{F071A6E2-BC06-4D07-9E98-8C0E3AA155DA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tellma.AttendanceImporter.Samsung.Tests", "Tellma.AttendanceImporter.Samsung.Tests\Tellma.AttendanceImporter.Samsung.Tests.csproj", "{11448E75-EF7F-4138-98E5-25E4984F8C1B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tellma.AttendanceImporter.Samsung.Tests", "Tellma.AttendanceImporter.Samsung.Tests\Tellma.AttendanceImporter.Samsung.Tests.csproj", "{11448E75-EF7F-4138-98E5-25E4984F8C1B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tellma.Utilities.EmailLogger", "Tellma.Utilities.EmailLogger\Tellma.Utilities.EmailLogger.csproj", "{8467B642-590F-4956-9180-44120128F355}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tellma.Utilities.EmailLogger", "Tellma.Utilities.EmailLogger\Tellma.Utilities.EmailLogger.csproj", "{8467B642-590F-4956-9180-44120128F355}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tellma.Utilities.EmailLogger.Tests", "Tellma.Utilities.EmailLogger.Tests\Tellma.Utilities.EmailLogger.Tests.csproj", "{09F097E6-ED20-43BD-9BED-949D66B87E30}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tellma.Utilities.EmailLogger.Tests", "Tellma.Utilities.EmailLogger.Tests\Tellma.Utilities.EmailLogger.Tests.csproj", "{09F097E6-ED20-43BD-9BED-949D66B87E30}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
