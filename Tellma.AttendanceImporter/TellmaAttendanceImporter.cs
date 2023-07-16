@@ -23,6 +23,8 @@ namespace Tellma.AttendanceImporter
                            {
                                if (int.TryParse(s, out int result))
                                    return result;
+                               else if (string.IsNullOrWhiteSpace(s))
+                                   throw new ArgumentException($"Error parsing TenantIds config value, the TenantIds list is empty or the service account is unable to see the secrets file..");
                                else
                                    throw new ArgumentException($"Error parsing TenantIds config value, {s} is not a valid integer.");
                            })
