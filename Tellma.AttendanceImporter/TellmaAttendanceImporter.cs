@@ -15,7 +15,7 @@ namespace Tellma.AttendanceImporter
         {
             _deviceServiceFactory = deviceServiceFactory;
             _logger = logger;
-            _tellmaService = new TellmaService(options);
+            _tellmaService = new TellmaService(logger, options); // MA 2023-08-31
 
             _tenantIds = (options.Value.TenantIds ?? "")
                            .Split(",")

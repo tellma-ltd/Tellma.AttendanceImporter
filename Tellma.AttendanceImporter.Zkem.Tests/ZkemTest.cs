@@ -15,7 +15,7 @@ namespace Tellma.AttendanceImporter.Zkem.Tests
             {
                 // put real data below
                 Id = 1,
-                IpAddress = "10.20.4.14",
+                IpAddress = "192.168.40.20",
                 Port = 4370, // was 10
                 Name = "Test Zkem device",
                 DutyStationId = 8,

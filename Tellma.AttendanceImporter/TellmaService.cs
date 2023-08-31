@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Options;
+﻿using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Tellma.Api.Dto;
 using Tellma.AttendanceImporter.Contract;
 using Tellma.Client;
@@ -9,7 +10,8 @@ namespace Tellma.AttendanceImporter
     internal class TellmaService : ITellmaService
     {
         private readonly TellmaClient _client; // wrapper calling Tellma server => client
-        public TellmaService(IOptions<TellmaOptions> options)
+        private readonly ILogger<TellmaAttendanceImporter> logger; // MA 2023-08-31
+        public TellmaService(ILogger<TellmaAttendanceImporter> logger, IOptions<TellmaOptions> options)
         {
             // Create the client
             _client = new TellmaClient(
@@ -17,6 +19,8 @@ namespace Tellma.AttendanceImporter
                 authorityUrl: "https://web.tellma.com",
                 clientId: options.Value.ClientId,
                 clientSecret: options.Value.ClientSecret);
+
+            this.logger = logger; // MA 2023-08-31
         }
         public async Task<IEnumerable<DeviceInfo>> GetDeviceInfos(int tenantId, CancellationToken token)
         {
@@ -115,7 +119,8 @@ namespace Tellma.AttendanceImporter
                 {
                     Filter = $"PostingDate = '{date:yyyy-MM-dd}' && NotedAgentId = {dutyStationId} && State >= 0"
                 }, token);
-
+                logger.LogWarning($"({docResults.Data.Count}) documents found with posting date {date:yyyy-MM-dd}"); // MA 2023-08-31
+ 
                 DocumentForSave documentForSave;
                 if (docResults.Data.Count > 0)
                 {

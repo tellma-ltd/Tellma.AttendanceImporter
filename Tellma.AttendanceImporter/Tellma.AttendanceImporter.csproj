@@ -8,7 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="7.0.1" />
-    <PackageReference Include="Tellma.Client" Version="0.1.5" />
+    <PackageReference Include="Tellma.Client" Version="0.1.6" />
   </ItemGroup>
 
   <ItemGroup>
