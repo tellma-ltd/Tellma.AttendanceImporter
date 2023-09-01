@@ -1,5 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using System;
+using System.Globalization;
 using Tellma.Api.Dto;
 using Tellma.AttendanceImporter.Contract;
 using Tellma.Client;
@@ -104,7 +106,7 @@ namespace Tellma.AttendanceImporter
                 throw new Exception($"Tenant id {tenantId} does not have line definition with code: ToHRAttendanceLog.E");
             }
             var lineDefinitionId = lineDefinitionResult.Data[0].Id;
-
+           
             // records brought already are after last sync date
             foreach (var recordGroup in records
                 .GroupBy(r => new { r.DeviceInfo.DutyStationId, r.Time.Date })
@@ -113,13 +115,18 @@ namespace Tellma.AttendanceImporter
                 var date = recordGroup.Key.Date;
                 var dutyStationId = recordGroup.Key.DutyStationId;
 
+                // Create a Gregorian calendar
+                System.Globalization.Calendar gregorianCalendar = new GregorianCalendar();
+                // Format the date using the Gregorian calendar
+                string gregorianDate = date.ToString("yyyy-MM-dd", (IFormatProvider?)gregorianCalendar);
+
                 var docResults = await tenantClient
                 .Documents(documentDefinitionId)
                 .GetEntities(new GetArguments
                 {
-                    Filter = $"PostingDate = '{date:yyyy-MM-dd}' && NotedAgentId = {dutyStationId} && State >= 0"
+                    Filter = $"PostingDate = {gregorianDate} && NotedAgentId = {dutyStationId} && State >= 0"
                 }, token);
-                logger.LogWarning($"({docResults.Data.Count}) documents found with posting date {date:yyyy-MM-dd}"); // MA 2023-08-31
+                logger.LogWarning($"({docResults.Data.Count}) documents found with posting date {gregorianDate}"); // MA 2023-08-31
  
                 DocumentForSave documentForSave;
                 if (docResults.Data.Count > 0)
