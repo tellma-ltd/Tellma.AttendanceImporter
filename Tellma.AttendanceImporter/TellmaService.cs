@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using System;
 using System.Globalization;
 using Tellma.Api.Dto;
 using Tellma.AttendanceImporter.Contract;
@@ -12,7 +11,7 @@ namespace Tellma.AttendanceImporter
     internal class TellmaService : ITellmaService
     {
         private readonly TellmaClient _client; // wrapper calling Tellma server => client
-        private readonly ILogger<TellmaAttendanceImporter> logger; // MA 2023-08-31
+        private readonly ILogger<TellmaAttendanceImporter> logger;
         public TellmaService(ILogger<TellmaAttendanceImporter> logger, IOptions<TellmaOptions> options)
         {
             // Create the client
@@ -22,7 +21,7 @@ namespace Tellma.AttendanceImporter
                 clientId: options.Value.ClientId,
                 clientSecret: options.Value.ClientSecret);
 
-            this.logger = logger; // MA 2023-08-31
+            this.logger = logger;
         }
         public async Task<IEnumerable<DeviceInfo>> GetDeviceInfos(int tenantId, CancellationToken token)
         {
@@ -36,7 +35,7 @@ namespace Tellma.AttendanceImporter
 
             if (deviceDefinitionResult.Data.Count == 0)
             {
-                // TODO: Add log warning
+                logger.LogWarning($"There is no resource definition for TNA devices");
                 return Enumerable.Empty<DeviceInfo>();
             }
             var syncResult = await tenantClient
@@ -115,18 +114,17 @@ namespace Tellma.AttendanceImporter
                 var date = recordGroup.Key.Date;
                 var dutyStationId = recordGroup.Key.DutyStationId;
 
-                // Create a Gregorian calendar
-                System.Globalization.Calendar gregorianCalendar = new GregorianCalendar();
-                // Format the date using the Gregorian calendar
-                string gregorianDate = date.ToString("yyyy-MM-dd", (IFormatProvider?)gregorianCalendar);
+                // Format the date using the US Culture
+                CultureInfo culture = new("en-US");
+                string gregorianDate = date.ToString("yyyy-MM-dd", (IFormatProvider?)culture);
 
                 var docResults = await tenantClient
                 .Documents(documentDefinitionId)
                 .GetEntities(new GetArguments
                 {
-                    Filter = $"PostingDate = {gregorianDate} && NotedAgentId = {dutyStationId} && State >= 0"
+                    Filter = $"PostingDate = '{gregorianDate}' && NotedAgentId = {dutyStationId} && State >= 0"
                 }, token);
-                logger.LogWarning($"({docResults.Data.Count}) documents found with posting date {gregorianDate}"); // MA 2023-08-31
+                logger.LogWarning($"({docResults.Data.Count}) documents found with posting date {gregorianDate}");
  
                 DocumentForSave documentForSave;
                 if (docResults.Data.Count > 0)
