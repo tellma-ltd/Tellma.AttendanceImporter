@@ -76,7 +76,6 @@ namespace Tellma.AttendanceImporter
 
             return deviceInfos;
         }
-
         public async Task Import(int tenantId, IEnumerable<AttendanceRecord> records, CancellationToken token)
         {
             var tenantClient = _client.Application(tenantId);
@@ -173,7 +172,6 @@ namespace Tellma.AttendanceImporter
                             }
 
                         });
-
                 }
                 await tenantClient
                     .Documents(documentDefinitionId)
